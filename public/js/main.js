@@ -1,7 +1,29 @@
+
+
 const socket = io.connect();
 
 
+
 //productos
+
+
+function addItem() {
+  const tittle = document.getElementById('tittle').value;
+  const price = document.getElementById('price').value;
+  const thumbnail = document.getElementById('thumbnail').value;
+
+
+  const newItem = {
+    tittle: tittle,
+    price: price,
+    thumbnail:thumbnail}
+
+
+    socket.emit('nuevoProducto', newItem);
+    fs.writeFile(`/api/productos.json`, JSON.stringify(deleteByid ,null, 2))
+    return false;
+}
+
 socket.on("productos", function(saveProd) {
   renderProd(saveProd);
 })

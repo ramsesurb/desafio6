@@ -20,27 +20,21 @@ app.set("views", "./public")
 app.set("view engine", "ejs")
 
 app.get('/',async  (req, res) => {
-  const prods = await productos.getAll()
-    
-  res.render('index' ,{productos:prods });
+  res.render('index');
   });
 
+  app.post("/",async (req,res)=> {
+    const prod= req.body;
+    try
+    {const saveProd = await productos.save(prod);  
+    res.render('index')
+    
+    }  
+    catch (err) {
+     console.log(err);
+    }
+  });
 
-app.post("/",async (req,res)=> {
-  const prod= req.body;
-  try
-  {const saveProd = await productos.save(prod);  
-   res.send (saveProd)
-   res.redirect('/');
-    next();
-  }  
-  catch (err) {
-   console.log(err);
-  }
-  finally {
-    res.redirect('/')
-  }
-});
 
 
 io.on('connection', async socket => {
