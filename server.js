@@ -26,7 +26,7 @@ app.get('/',async  (req, res) => {
   });
 
 
-app.post("/productos",async (req,res)=> {
+app.post("/",async (req,res)=> {
   const prod= req.body;
   try
   {const saveProd = await productos.save(prod);  
