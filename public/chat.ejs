@@ -1,0 +1,20 @@
+<h1 class="text-center  text-danger">Chat</h1>
+ 
+<form onsubmit= "return addMessage(this);">
+
+<div class="form-group">
+  <label for="nombre"><b>User</b></label>
+  <input type="text" placeholder="Steve Jobs" id="nombre" name="nombre" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="mensaje"><b>Say something</b></label>
+  <input type="text" placeholder="Hello, its me" id="mensaje" name="mensaje" class="form-control">
+  <button  type="submit" class="btn btn-danger mt-3">Send</button>
+</div>
+</form>
+
+<div class=" px-2 rounded mt-3 overflow-auto border border-danger" id="messages" >
+
+
+</div>

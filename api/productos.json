@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "tittle": "Fender Player Stratocaster HSS",
+    "price": 879.99,
+    "thumbnail": "https://muzikercdn.com/uploads/products/789/78991/main_9a486311.jpg"
+  },
+  {
+    "id": 2,
+    "tittle": "Squier Bullet Stratocaster",
+    "price": 179.99,
+    "thumbnail": "https://muzikercdn.com/uploads/products/2863/286399/main_6343f6f3.jpg"
+  },
+  {
+    "id": 3,
+    "tittle": "Ibanez AZ2402",
+    "price": 1999.99,
+    "thumbnail": "https://muzikercdn.com/uploads/products/6256/625697/main_b504a8bc.jpg"
+  },
+  {
+    "id": 4,
+    "tittle": "Yamaha Pacifica 112VM",
+    "price": 319.99,
+    "thumbnail": "https://muzikercdn.com/uploads/products/196/19613/main_c65761a5.jpg"
+  }
+]
