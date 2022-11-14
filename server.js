@@ -1,9 +1,12 @@
 const express = require('express');
 const Contenedor = require('./Contenedor')
+const ContenedorIo = require('./ContenedorIo');
 const productos = new Contenedor('./api/productos.json')
+const historial = new ContenedorIo (".api/historialChat.json")
 
 const { Server: HttpServer } = require('http');
 const { Server: IOServer } = require('socket.io');
+
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -23,17 +26,7 @@ app.get('/',async  (req, res) => {
   res.render('index');
   });
 
-  app.post("/",async (req,res)=> {
-    const prod= req.body;
-    try
-    {const saveProd = await productos.save(prod);  
-    res.render('index')
-    
-    }  
-    catch (err) {
-     console.log(err);
-    }
-  });
+  
 
 
 
@@ -48,6 +41,17 @@ io.on('connection', async socket => {
     io.sockets.emit('mensajes', mensajes);
     
   })
+
+  //historial del chat
+  const chat = await historial.getChat()
+  socket.emit('mensajes', chat )
+  socket.on('new-message', async data => {
+
+    await historial.saveChat(data)
+    const chat2 = await historial.getChat()
+    io.sockets.emit('messages', chat2 );
+});
+
  
   // productos
 
@@ -59,6 +63,18 @@ io.on('connection', async socket => {
     prods.push(saveProd)
     io.sockets.emit("productos",prods)
 })
+
+//productos save
+
+socket.emit('productos', prods )
+
+socket.on('nuevoProducto', async prod => {
+
+  await productos.save(prod)
+  const prods2 = await productos.getAll()
+  io.sockets.emit('productos', prods2 );
+});
+
 
 });
 

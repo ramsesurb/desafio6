@@ -8,6 +8,7 @@ const socket = io.connect();
 
 
 function addItem() {
+  
   const tittle = document.getElementById('tittle').value;
   const price = document.getElementById('price').value;
   const thumbnail = document.getElementById('thumbnail').value;
