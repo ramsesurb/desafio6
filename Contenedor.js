@@ -1,7 +1,6 @@
 
-const { profileEnd } = require('console');
 const { promises: fs } = require('fs');
-const { json } = require('stream/consumers');
+
 
 class Contenedor {
    

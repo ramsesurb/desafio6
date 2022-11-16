@@ -34,11 +34,11 @@ io.on('connection', async socket => {
   console.log('Nuevo cliente conectado!');
 
   //chat
-  socket.emit('mensajes', mensajes);
+  socket.emit('mensajes', historial.getChat());
 
-  socket.on('new-message', data => {
-    mensajes.push(data);
-    io.sockets.emit('mensajes', mensajes);
+  socket.on('new-message', async data => {
+    await historial.getChat(data);
+    io.sockets.emit('mensajes', historial.getChat());
     
   })
 
@@ -57,11 +57,11 @@ io.on('connection', async socket => {
 
   const prods = await productos.getAll()
  
-  socket.emit("productos", prods)
+  socket.emit("productos", productos.getAll())
 
-  socket.on("nuevoProducto", saveProd => {
-    prods.push(saveProd)
-    io.sockets.emit("productos",prods)
+  socket.on("nuevoProducto", async saveProd => {
+    await productos.getAll(saveProd)
+    io.sockets.emit("productos",await  productos.getAll() )
 })
 
 //productos save
