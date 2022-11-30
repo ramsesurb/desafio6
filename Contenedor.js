@@ -1,12 +1,14 @@
 
 const { promises: fs } = require('fs');
+const ClienteSql = require("./model/sql")
+const Sql = new ClienteSql 
 
 
 class Contenedor {
    
     async getAll(){
         try {
-            const content = JSON.parse(await fs.readFile(`./api/productos.json`,'utf-8'))
+            const content = await Sql.getArticles()
             return content
             
         } catch (error) {
@@ -53,9 +55,9 @@ class Contenedor {
         try {
             const saveCont = await this.getAll()
             const lastId = saveCont.length
-            const newProduct = {id:(lastId+1), tittle: prod.tittle ,price: prod.price, thumbnail: prod.thumbnail }
+            const newProduct = {id_producto:(lastId+1), title: prod.title ,price: prod.price, thumbnail: prod.thumbnail,stock:8 }
             await saveCont.push(newProduct)
-            await fs.writeFile(`./api/productos.json`, JSON.stringify(saveCont ,null, 2))
+            await Sql.insertProducts (newProduct)
             return saveCont
            
         } catch (error) {

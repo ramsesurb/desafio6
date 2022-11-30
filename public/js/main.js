@@ -9,13 +9,13 @@ const socket = io.connect();
 
 function addItem() {
   
-  const tittle = document.getElementById('tittle').value;
+  const title = document.getElementById('title').value;
   const price = document.getElementById('price').value;
   const thumbnail = document.getElementById('thumbnail').value;
 
 
   const newItem = {
-    tittle: tittle,
+    title: title,
     price: price,
     thumbnail:thumbnail}
 
@@ -35,7 +35,7 @@ function renderProd(saveProd) {
     <div class="table-responsive table-danger border rounded border-danger">
     <table class="table border-start-0 border-danger danger table-danger">
       <tr class="">
-        <th colspan="3"> Product :${elem.tittle}</th>
+        <th colspan="3"> Product :${elem.title}</th>
         <th colspan="">price: ${elem.price}</th>
         <th> image: <img src="  ${elem.thumbnail}" alt="image" width="50"> </th>
       </tr>
